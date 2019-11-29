@@ -30,7 +30,7 @@ interface PetStorage {
 
 data class OwnerWithPetsAndToys(
     @Embedded val owner: Owner,
-    @Relation(parentColumn = "ownerId", entityColumn = "petOwnerId")
+    @Relation(parentColumn = "ownerId", entityColumn = "petOwnerId", entity = Pet::class)
     val petsAndToys: List<PetsWithToys>
 )
 
