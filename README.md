@@ -1,3 +1,7 @@
 # Room Playground
 
-Attempting to understand 3 entities, 2 one-to-many relationships and how to query that
+Three entities which are nested inside each other, with one-to-many relationships:
+
+`Owner` -> `Pet` -> `Toy`
+
+Query to retrieve all toys for all pets for all owners.
