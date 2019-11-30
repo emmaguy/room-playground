@@ -25,7 +25,7 @@ abstract class PetRoomDatabase : RoomDatabase() {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
-                            PetRoomDatabase::class.java, "word_database"
+                            PetRoomDatabase::class.java, "pet_database"
                         )
                             .build()
                     }
