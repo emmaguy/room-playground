@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
+    private val databasePopulater = DatabasePopulater()
     private val petStorage by lazy { PetDatabase.getDatabase(this).petStorage() }
     private val disposables = CompositeDisposable()
 
@@ -18,9 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Observable.fromCallable { petStorage.insertDefault() }
-            .subscribeOn(Schedulers.io())
-            .blockingFirst()
+        databasePopulater.populateDb(petStorage)
 
         disposables += petStorage.ownersAndPetsWithToys()
             .subscribeOn(Schedulers.io())

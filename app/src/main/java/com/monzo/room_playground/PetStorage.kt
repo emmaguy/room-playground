@@ -11,7 +11,7 @@ interface PetStorage {
     fun ownersAndPetsWithToys(): Observable<List<OwnerWithPetsAndToys>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertOwners(owners: List<DbOwner>)
+    fun insertOwner(owners: DbOwner)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPets(owners: List<DbPet>)
@@ -20,26 +20,9 @@ interface PetStorage {
     fun insertToys(owners: List<DbToy>)
 
     @Transaction
-    fun insertDefault() {
-        insertOwners(
-            listOf(
-                DbOwner(0, "Emma"),
-                DbOwner(1, "Fred"),
-                DbOwner(2, "Elijah"),
-                DbOwner(3, "Sam")
-            )
-        )
-        insertPets(
-            listOf(
-                DbPet(100, 0, "Tina", 10),
-                DbPet(101, 0, "Taco", 10)
-            )
-        )
-        insertToys(
-            listOf(
-                DbToy(1001, 100, "Tina's hat"),
-                DbToy(1002, 101, "Taco's ball")
-            )
-        )
+    fun insertDefault(owner: DbOwner, pets: List<DbPet>, toys: List<DbToy>) {
+        insertOwner(owner)
+        insertPets(pets)
+        insertToys(toys)
     }
 }
