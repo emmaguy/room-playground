@@ -12,7 +12,7 @@ class DatabasePopulater {
     @SuppressLint("CheckResult")
     fun populateDb(petStorage: PetStorage) {
         Observable.fromCallable {
-            for (i in 1..10) {
+            for (i in 1..1000) {
                 val owner = DbOwner(ownerId = ownerId++, name = "Emma")
                 val pet1 = DbPet(
                     petId = petId++,

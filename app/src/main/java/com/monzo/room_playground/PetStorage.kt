@@ -1,14 +1,14 @@
 package com.monzo.room_playground
 
+import androidx.paging.DataSource
 import androidx.room.*
-import io.reactivex.Observable
 
 @Dao
 interface PetStorage {
 
     @Transaction
     @Query("SELECT * FROM DbOwner")
-    fun ownersAndPetsWithToys(): Observable<List<OwnerWithPetsAndToys>>
+    fun ownersAndPetsWithToys(): DataSource.Factory<Int, OwnerWithPetsAndToys>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertOwner(owners: DbOwner)
